@@ -645,16 +645,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Data Science Team** - Initial work and ML pipeline
-- **DevOps Team** - Containerization and K8s deployment
-- **Frontend Team** - Web application development
+- **GOAT CREATOR** - Kiran Gowda
 
-## 🙏 Acknowledgments
 
-- Weather data sources and European meteorological services
-- Open source ML libraries and frameworks
-- Kubernetes and Docker communities
-- Flask and Python communities
+
 
 ---
 
