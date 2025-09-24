@@ -164,12 +164,12 @@ cython_debug/
 # Large Data Files and Models
 # =========================
 
-# Large CSV files (>100MB)
-*.csv
+# Large CSV files (>100MB) - Allow most data files
+# *.csv  # Comment out to allow CSV files in data folder
 !requirements.txt
 
-# Model files and pickles (often large)
-*.pkl
+# Model files and pickles (allow data folder models)
+# *.pkl  # Comment out to allow pickle files in data folder
 *.pickle
 *.joblib
 *.h5
@@ -221,14 +221,12 @@ Thumbs.db
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Large processed datasets
+# Large processed datasets (allow data folder but exclude largest files)
 weather_extracted/
-data/weather_cleaned.csv
-data/bbq_labels_cleaned.csv  
-data/weather_engineered_full.csv
-data/weather_engineered_selected.csv
-data/*.pkl
-data/*.csv
+data/weather_engineered_full.csv  # Exclude largest CSV (32MB)
+# Keep other data files for GitHub repo
+# data/*.pkl - Allow model files
+# data/*.csv - Allow smaller CSV files
 !data/*.png  # Keep visualization images
 !data/*.txt  # Keep report files
 
