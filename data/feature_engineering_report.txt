@@ -1,0 +1,47 @@
+
+FEATURE ENGINEERING SUMMARY REPORT
+==================================
+
+Final Dataset Shape: (3654, 477)
+
+Feature Categories Created:
+1. Temporal Features:
+   - Cyclical encoding (sin/cos) for months, days, weeks
+   - Seasonal indicators
+   - Date-based features
+
+2. Weather-Specific Features:
+   - Temperature ranges and anomalies
+   - Wind gust factors
+   - Comfort indices
+   - Precipitation intensity
+   - Weather favorability scores
+
+3. Rolling Window Features:
+   - 3, 7, and 14-day rolling means and standard deviations
+   - Rolling min/max for temperature variables
+
+4. Lag Features:
+   - 1, 3, and 7-day lag features for key variables
+
+5. Interaction Features:
+   - Temperature-humidity interactions
+   - Temperature-pressure interactions
+
+6. PCA Features:
+   - Principal components for dimensionality reduction
+
+Data Processing:
+- Feature scaling applied
+- Missing values handled
+- Feature selection performed
+- Target variables merged
+
+Files Created:
+- data/weather_engineered_full.csv
+- data/standard_scaler.pkl (if scaling applied)
+- data/pca_model.pkl (if PCA applied)
+- data/feature_importance_scores.csv (if feature selection applied)
+- data/feature_engineering_report.txt
+
+Total Features: 477

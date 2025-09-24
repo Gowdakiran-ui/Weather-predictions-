@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  weather-app:
+    build: .
+    container_name: weather-prediction-app
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.weather-app.rule=Host(`weather-prediction.local`)"
+      - "traefik.http.services.weather-app.loadbalancer.server.port=5001"
+
+networks:
+  default:
+    driver: bridge

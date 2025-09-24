@@ -1,0 +1,14 @@
+artifact_uri: file:C:/books/code/Weather-predictions-/mlruns/221842855525582350/9ea89e0128ab41eb99dbb187d99a484d/artifacts
+end_time: 1758690531379
+entry_point_name: ''
+experiment_id: '221842855525582350'
+lifecycle_stage: active
+run_id: 9ea89e0128ab41eb99dbb187d99a484d
+run_name: XGBoost_Weather_Prediction
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758690514904
+status: 3
+tags: []
+user_id: Kiran gowda.A

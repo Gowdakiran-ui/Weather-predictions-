@@ -1,0 +1,14 @@
+artifact_uri: file:C:/books/code/Weather-predictions-/mlruns/221842855525582350/53d67663c7124976b7be411133f2ca75/artifacts
+end_time: 1758690540478
+entry_point_name: ''
+experiment_id: '221842855525582350'
+lifecycle_stage: active
+run_id: 53d67663c7124976b7be411133f2ca75
+run_name: Gradient_Boosting_Weather_Prediction
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758690531389
+status: 3
+tags: []
+user_id: Kiran gowda.A

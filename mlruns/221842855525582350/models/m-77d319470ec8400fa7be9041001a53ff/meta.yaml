@@ -1,0 +1,10 @@
+artifact_location: file:C:/books/code/Weather-predictions-/mlruns/221842855525582350/models/m-77d319470ec8400fa7be9041001a53ff/artifacts
+creation_timestamp: 1758690531953
+experiment_id: '221842855525582350'
+last_updated_timestamp: 1758690540362
+model_id: m-77d319470ec8400fa7be9041001a53ff
+model_type: null
+name: model
+source_run_id: 53d67663c7124976b7be411133f2ca75
+status: 2
+status_message: null

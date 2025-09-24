@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌤️ Amazing Weather Prediction - BBQ Perfect Days</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            50% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+            100% { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.6); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: cardFloat 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes cardFloat {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .city-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            color: white;
+        }
+
+        .city-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .city-card.selected {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.3);
+            transform: scale(1.05);
+        }
+
+        .city-flag {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .city-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .city-country {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .weather-controls {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .control-group {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .control-group label {
+            color: white;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-display {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .predict-button {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .predict-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .predict-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .results {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            animation: resultsSlideIn 0.5s ease-out;
+        }
+
+        @keyframes resultsSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .result-prediction {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .result-prediction.positive {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+            border: 2px solid #4caf50;
+        }
+
+        .result-prediction.negative {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+            border: 2px solid #f44336;
+        }
+
+        .confidence-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #ff9800);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .recommendations {
+            text-align: left;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b6b;
+            animation: recommendationSlide 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .recommendations li:nth-child(1) { animation-delay: 0.1s; }
+        .recommendations li:nth-child(2) { animation-delay: 0.2s; }
+        .recommendations li:nth-child(3) { animation-delay: 0.3s; }
+        .recommendations li:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes recommendationSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #f44336;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-card {
+                padding: 20px;
+            }
+            
+            .cities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌤️ Amazing Weather Prediction</h1>
+            <p>Discover if it's the perfect day for a BBQ in European cities!</p>
+        </div>
+
+        <div class="main-card">
+            <!-- City Selection -->
+            <h2 style="color: white; text-align: center; margin-bottom: 25px; font-size: 1.8rem;">
+                🌍 Choose Your City
+            </h2>
+            <div class="cities-grid" id="citiesGrid">
+                <!-- Cities will be populated by JavaScript -->
+            </div>
+
+            <!-- Weather Controls -->
+            <div class="weather-controls">
+                <h3 style="color: white; text-align: center; margin-bottom: 25px; font-size: 1.5rem;">
+                    ⚡ Set Weather Conditions
+                </h3>
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label for="temperature">🌡️ Temperature (°C)</label>
+                        <input type="range" id="temperature" class="slider" min="-10" max="40" value="15" step="0.5">
+                        <div class="value-display" id="tempValue">15.0°C</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="humidity">💧 Humidity (%)</label>
+                        <input type="range" id="humidity" class="slider" min="0" max="100" value="70" step="1">
+                        <div class="value-display" id="humidityValue">70%</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="pressure">🌀 Pressure (hPa)</label>
+                        <input type="range" id="pressure" class="slider" min="950" max="1050" value="1013" step="1">
+                        <div class="value-display" id="pressureValue">1013 hPa</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="cloudCover">☁️ Cloud Cover (0-8)</label>
+                        <input type="range" id="cloudCover" class="slider" min="0" max="8" value="5" step="1">
+                        <div class="value-display" id="cloudValue">5/8</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="precipitation">🌧️ Precipitation (mm)</label>
+                        <input type="range" id="precipitation" class="slider" min="0" max="20" value="0" step="0.1">
+                        <div class="value-display" id="precipValue">0.0 mm</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="sunshine">☀️ Sunshine (hours)</label>
+                        <input type="range" id="sunshine" class="slider" min="0" max="14" value="6" step="0.5">
+                        <div class="value-display" id="sunshineValue">6.0 hrs</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="windSpeed">💨 Wind Speed (km/h)</label>
+                        <input type="range" id="windSpeed" class="slider" min="0" max="50" value="10" step="1">
+                        <div class="value-display" id="windValue">10 km/h</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="globalRadiation">🌞 Solar Radiation (W/m²)</label>
+                        <input type="range" id="globalRadiation" class="slider" min="0" max="400" value="150" step="5">
+                        <div class="value-display" id="radiationValue">150 W/m²</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Predict Button -->
+            <button class="predict-button" id="predictBtn" onclick="handlePrediction()" disabled>
+                🔮 Predict BBQ Weather
+            </button>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing weather conditions...</p>
+            </div>
+
+            <!-- Results -->
+            <div class="results hidden" id="results">
+                <h3 class="result-title">🎯 Prediction Results</h3>
+                <div class="result-prediction" id="predictionResult"></div>
+                
+                <div style="color: white; margin: 20px 0;">
+                    <p><strong>🎯 Confidence Level:</strong></p>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                </div>
+                
+                <div class="recommendations">
+                    <h4 style="color: white; margin-bottom: 15px;">💡 Recommendations:</h4>
+                    <ul id="recommendationsList"></ul>
+                </div>
+            </div>
+
+            <!-- Error Display -->
+            <div class="error hidden" id="errorDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        let selectedCity = null;
+        
+        // European cities data
+        const cities = {
+            'BASEL': {'country': 'Switzerland', 'flag': 'CH'},
+            'BUDAPEST': {'country': 'Hungary', 'flag': 'HU'},
+            'DRESDEN': {'country': 'Germany', 'flag': 'DE'},
+            'DUSSELDORF': {'country': 'Germany', 'flag': 'DE'},
+            'HEATHROW': {'country': 'United Kingdom', 'flag': 'GB'},
+            'KASSEL': {'country': 'Germany', 'flag': 'DE'},
+            'LJUBLJANA': {'country': 'Slovenia', 'flag': 'SI'},
+            'MAASTRICHT': {'country': 'Netherlands', 'flag': 'NL'},
+            'MALMO': {'country': 'Sweden', 'flag': 'SE'},
+            'MONTELIMAR': {'country': 'France', 'flag': 'FR'},
+            'MUENCHEN': {'country': 'Germany', 'flag': 'DE'},
+            'OSLO': {'country': 'Norway', 'flag': 'NO'},
+            'PERPIGNAN': {'country': 'France', 'flag': 'FR'},
+            'SONNBLICK': {'country': 'Austria', 'flag': 'AT'},
+            'STOCKHOLM': {'country': 'Sweden', 'flag': 'SE'},
+            'TOURS': {'country': 'France', 'flag': 'FR'}
+        };
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            populateCities();
+            setupSliders();
+        });
+
+        function populateCities() {
+            const citiesGrid = document.getElementById('citiesGrid');
+            
+            Object.entries(cities).forEach(([cityCode, cityInfo]) => {
+                const cityCard = document.createElement('div');
+                cityCard.className = 'city-card';
+                cityCard.onclick = () => selectCity(cityCode, cityCard);
+                
+                cityCard.innerHTML = `
+                    <div class="city-flag">${cityInfo.flag}</div>
+                    <div class="city-name">${cityCode}</div>
+                    <div class="city-country">${cityInfo.country}</div>
+                `;
+                
+                citiesGrid.appendChild(cityCard);
+            });
+        }
+
+        function selectCity(cityCode, cardElement) {
+            // Remove previous selection
+            document.querySelectorAll('.city-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Select new city
+            cardElement.classList.add('selected');
+            selectedCity = cityCode;
+            
+            // Enable predict button
+            document.getElementById('predictBtn').disabled = false;
+            
+            // Hide previous results
+            hideResults();
+        }
+
+        function setupSliders() {
+            const sliders = [
+                { id: 'temperature', display: 'tempValue', unit: '°C', decimals: 1 },
+                { id: 'humidity', display: 'humidityValue', unit: '%', decimals: 0 },
+                { id: 'pressure', display: 'pressureValue', unit: ' hPa', decimals: 0 },
+                { id: 'cloudCover', display: 'cloudValue', unit: '/8', decimals: 0 },
+                { id: 'precipitation', display: 'precipValue', unit: ' mm', decimals: 1 },
+                { id: 'sunshine', display: 'sunshineValue', unit: ' hrs', decimals: 1 },
+                { id: 'windSpeed', display: 'windValue', unit: ' km/h', decimals: 0 },
+                { id: 'globalRadiation', display: 'radiationValue', unit: ' W/m²', decimals: 0 }
+            ];
+
+            sliders.forEach(slider => {
+                const element = document.getElementById(slider.id);
+                const display = document.getElementById(slider.display);
+                
+                element.addEventListener('input', function() {
+                    const value = parseFloat(this.value);
+                    display.textContent = value.toFixed(slider.decimals) + slider.unit;
+                });
+            });
+        }
+
+        async function handlePrediction() {
+            if (!selectedCity) {
+                showError('Please select a city first!');
+                return;
+            }
+
+            try {
+                // Show loading
+                showLoading();
+                
+                // Gather form data
+                const weatherData = {
+                    city: selectedCity,
+                    temperature: parseFloat(document.getElementById('temperature').value),
+                    humidity: parseFloat(document.getElementById('humidity').value) / 100,
+                    pressure: parseFloat(document.getElementById('pressure').value),
+                    cloud_cover: parseFloat(document.getElementById('cloudCover').value),
+                    precipitation: parseFloat(document.getElementById('precipitation').value),
+                    sunshine: parseFloat(document.getElementById('sunshine').value),
+                    wind_speed: parseFloat(document.getElementById('windSpeed').value),
+                    global_radiation: parseFloat(document.getElementById('globalRadiation').value)
+                };
+
+                // Make prediction request
+                const response = await fetch('/api/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(weatherData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    displayResults(result);
+                } else {
+                    showError(result.error || 'Prediction failed');
+                }
+
+            } catch (error) {
+                console.error('Prediction error:', error);
+                showError('Network error. Please try again.');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function displayResults(result) {
+            const resultsDiv = document.getElementById('results');
+            const predictionResult = document.getElementById('predictionResult');
+            const confidenceFill = document.getElementById('confidenceFill');
+            const recommendationsList = document.getElementById('recommendationsList');
+
+            // Show prediction
+            predictionResult.textContent = result.bbq_weather;
+            predictionResult.className = `result-prediction ${result.prediction ? 'positive' : 'negative'}`;
+
+            // Show confidence
+            confidenceFill.style.width = result.confidence + '%';
+            confidenceFill.textContent = result.confidence + '% Confidence';
+
+            // Show recommendations
+            recommendationsList.innerHTML = '';
+            result.recommendation.forEach((rec, index) => {
+                const li = document.createElement('li');
+                li.textContent = rec;
+                li.style.animationDelay = (index * 0.1) + 's';
+                recommendationsList.appendChild(li);
+            });
+
+            // Show results
+            resultsDiv.classList.remove('hidden');
+            hideError();
+        }
+
+        function showLoading() {
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('predictBtn').disabled = true;
+            hideResults();
+            hideError();
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.remove('show');
+            document.getElementById('predictBtn').disabled = false;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorDisplay');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            hideResults();
+        }
+
+        function hideError() {
+            document.getElementById('errorDisplay').classList.add('hidden');
+        }
+
+        function hideResults() {
+            document.getElementById('results').classList.add('hidden');
+        }
+
+        // Add some fun interactions
+        document.addEventListener('mousemove', function(e) {
+            const cards = document.querySelectorAll('.city-card:not(.selected)');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const distance = Math.sqrt(x * x + y * y);
+                
+                if (distance < 100) {
+                    const scale = 1 + (100 - distance) / 1000;
+                    card.style.transform = `scale(${scale})`;
+                } else {
+                    card.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

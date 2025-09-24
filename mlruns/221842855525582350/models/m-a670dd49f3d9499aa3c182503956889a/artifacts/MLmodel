@@ -1,0 +1,130 @@
+artifact_path: file:C:/books/code/Weather-predictions-/mlruns/221842855525582350/models/m-a670dd49f3d9499aa3c182503956889a/artifacts
+env_vars:
+- OPENROUTER_API_KEY
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.7
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: xgb
+    xgb_version: 3.0.5
+is_signature_from_type_hint: false
+mlflow_version: 3.3.2
+model_id: m-a670dd49f3d9499aa3c182503956889a
+model_size_bytes: 203250
+model_uuid: m-a670dd49f3d9499aa3c182503956889a
+prompts: null
+run_id: 9ea89e0128ab41eb99dbb187d99a484d
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "SEASON", "required": true}, {"type": "boolean",
+    "name": "SEASON_Autumn", "required": true}, {"type": "boolean", "name": "SEASON_Spring",
+    "required": true}, {"type": "boolean", "name": "SEASON_Summer", "required": true},
+    {"type": "boolean", "name": "SEASON_Winter", "required": true}, {"type": "double",
+    "name": "BASEL_temp_max", "required": true}, {"type": "double", "name": "DE_BILT_temp_mean",
+    "required": true}, {"type": "double", "name": "DE_BILT_temp_max", "required":
+    true}, {"type": "double", "name": "DUSSELDORF_temp_mean", "required": true}, {"type":
+    "double", "name": "DUSSELDORF_temp_max", "required": true}, {"type": "double",
+    "name": "HEATHROW_temp_mean", "required": true}, {"type": "double", "name": "HEATHROW_temp_max",
+    "required": true}, {"type": "double", "name": "KASSEL_temp_max", "required": true},
+    {"type": "double", "name": "MAASTRICHT_temp_max", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_temp_mean", "required": true}, {"type": "double",
+    "name": "MONTELIMAR_temp_max", "required": true}, {"type": "double", "name": "OSLO_temp_max",
+    "required": true}, {"type": "double", "name": "PERPIGNAN_temp_mean", "required":
+    true}, {"type": "double", "name": "TOURS_humidity", "required": true}, {"type":
+    "double", "name": "TOURS_global_radiation", "required": true}, {"type": "double",
+    "name": "TOURS_precipitation", "required": true}, {"type": "double", "name": "TOURS_temp_mean",
+    "required": true}, {"type": "double", "name": "TOURS_temp_max", "required": true},
+    {"type": "long", "name": "DAY_OF_YEAR", "required": true}, {"type": "long", "name":
+    "WEEK_OF_YEAR", "required": true}, {"type": "double", "name": "DAY_OF_YEAR_sin",
+    "required": true}, {"type": "double", "name": "WEEK_cos", "required": true}, {"type":
+    "double", "name": "BASEL_comfort_index", "required": true}, {"type": "double",
+    "name": "DUSSELDORF_comfort_index", "required": true}, {"type": "double", "name":
+    "HEATHROW_temp_anomaly", "required": true}, {"type": "double", "name": "HEATHROW_comfort_index",
+    "required": true}, {"type": "double", "name": "KASSEL_comfort_index", "required":
+    true}, {"type": "double", "name": "MAASTRICHT_comfort_index", "required": true},
+    {"type": "double", "name": "MONTELIMAR_temp_anomaly", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_comfort_index", "required": true}, {"type": "double",
+    "name": "TOURS_temp_range", "required": true}, {"type": "double", "name": "TOURS_temp_anomaly",
+    "required": true}, {"type": "double", "name": "TOURS_comfort_index", "required":
+    true}, {"type": "double", "name": "TOURS_precip_intensity", "required": true},
+    {"type": "double", "name": "TOURS_weather_favorability", "required": true}, {"type":
+    "double", "name": "BASEL_temp_mean_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "DE_BILT_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "DRESDEN_temp_mean_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "DUSSELDORF_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "HEATHROW_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "HEATHROW_temp_mean_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "HEATHROW_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "KASSEL_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "MAASTRICHT_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "MALMO_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_temp_mean_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "MUENCHEN_temp_mean_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "OSLO_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "OSLO_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "PERPIGNAN_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "TOURS_temp_mean_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "TOURS_temp_mean_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "TOURS_temp_mean_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_max_rolling_mean_3d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_max_rolling_min_3d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_max_rolling_max_3d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "BUDAPEST_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "BUDAPEST_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "DE_BILT_temp_mean_rolling_mean_7d", "required": true}, {"type":
+    "double", "name": "DE_BILT_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "DRESDEN_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "DRESDEN_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "DUSSELDORF_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "HEATHROW_temp_mean_rolling_mean_7d", "required": true}, {"type":
+    "double", "name": "HEATHROW_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "HEATHROW_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "KASSEL_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "KASSEL_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "LJUBLJANA_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "LJUBLJANA_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "MAASTRICHT_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "MAASTRICHT_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "MALMO_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "MALMO_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_temp_mean_rolling_mean_7d", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "MONTELIMAR_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "OSLO_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "OSLO_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "PERPIGNAN_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "PERPIGNAN_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "ROMA_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "STOCKHOLM_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "STOCKHOLM_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "TOURS_temp_mean_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "TOURS_temp_mean_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_max_rolling_mean_7d", "required": true}, {"type":
+    "double", "name": "BASEL_temp_max_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "BUDAPEST_temp_max_rolling_min_7d", "required": true}, {"type":
+    "double", "name": "BUDAPEST_temp_max_rolling_max_7d", "required": true}, {"type":
+    "double", "name": "DE_BILT_temp_mean_lag_1d", "required": true}, {"type": "double",
+    "name": "HEATHROW_temp_mean_lag_1d", "required": true}, {"type": "double", "name":
+    "MONTELIMAR_temp_mean_lag_1d", "required": true}, {"type": "double", "name": "BASEL_temp_pressure_interaction",
+    "required": true}, {"type": "double", "name": "DE_BILT_temp_pressure_interaction",
+    "required": true}, {"type": "double", "name": "PCA_1", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-09-24 05:08:35.921673'
